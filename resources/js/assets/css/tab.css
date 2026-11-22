@@ -1,0 +1,48 @@
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background: linear-gradient(
+        180deg,
+        var(--bg-first),
+        var(--bg-secondary)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px 8px;
+    border-top: 3px solid var(--border-color);
+    box-shadow: 0 -4px 15px #0003;
+    z-index: 10;
+}
+
+.nav-item {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.nav-item svg {
+    width: 35px;
+    height: 35px;
+    fill: var(--text-primary);
+}
+
+.nav-item.active {
+    color: var(--text-muted);
+}
+
+.nav-item.active svg {
+    fill: var(--text-muted);
+}

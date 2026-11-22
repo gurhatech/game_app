@@ -1,0 +1,156 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
+@theme {
+    --font-sans:
+        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+    --color-primary: #360300;
+    --color-cent: #ffe34e;
+
+    /* Background Colors */
+    --color-bg-primary: #360300;
+    --color-bg-first: #510400;
+    --color-bg-secondary: #8b0902;
+    --color-bg-accent: #b30d04;
+    --color-bg-muted: #c8787d;
+
+    /* Text Colors */
+    --color-primary: #ffffff;
+    --color-secondary: #9ca3af;
+    --color-muted: #ff9b4e;
+    --shadow-game:
+        inset 50px 0 40px -20px rgba(0, 0, 0, 0.8),
+        inset -50px 0 40px -20px rgba(0, 0, 0, 0.8);
+}
+:root {
+    /* Primary Colors */
+    --primary: #360300;
+    --primary-hover: #610601;
+    --secondary: #8b0902;
+    --accent: #b30d04;
+    --muted: #c8787d;
+
+    /* Background Colors */
+    --bg-primary: #360300;
+    --bg-first: #510400;
+    --bg-secondary: #8b0902;
+    --bg-accent: #b30d04;
+    --bg-muted: #c8787d;
+
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: #9ca3af;
+    --text-muted: #ff9b4e;
+
+    /* Status Colors */
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+
+    /* Border & Shadow */
+    --border-color: #b30d04;
+    --border-glow: #7c3aed;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --glow: 0 0 15px #b30d04;
+
+    /* Game UI */
+    --health-color: #ef4444;
+    --mana-color: #3b82f6;
+    --xp-color: #a855f7;
+    --coin-color: #fbbf24;
+    --level-color: #22c55e;
+
+    /* Buttons */
+    --btn-primary: #7c3aed;
+    --btn-success: #16a34a;
+    --btn-danger: #dc2626;
+
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-full: 999px;
+}
+* {
+    user-select: none;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    padding-top: 55px;
+    min-height: 100vh;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+#h {
+    padding: 0 20px;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    display: flex;
+    height: 100vh;
+    gap: 20px;
+    flex-direction: column !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
+        url("/resources/js/assets/bg.jpg");
+}
+#game_frame {
+    position: absolute;
+    inset: 0;
+    top: 8%;
+    width: 100vw;
+    height: 92vh;
+}
+.custom-slide {
+    width: 300px !important;
+}
+#category {
+    display: flex;
+    flex-direction: column;
+    width: 60px;
+    height: 60px;
+    background-color: var(--bg-first);
+    border-radius: 8px;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+    box-shadow: inset 0px 0px 5px 1px var(--bg-muted);
+}
+#category.active,
+#category:hover {
+    border: 2px solid var(--color-cent);
+}
+.active_day{
+    position: relative;
+    transition: all 300ms ease-in-out;
+}
+.active_day::after{
+    position: absolute;
+    content: "";
+    width: 80%;
+    height: 2px;
+    background: rgb(236, 165, 0);
+    left: 4px;
+    bottom: -3px;
+    transition: all 300ms ease-in-out;
+}
+.glass-e{
+  border-top:1px solid #d86767 ;
+  background-image: linear-gradient(rgba(255,255,255,0.15),rgba(193, 1, 1, 0.35));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
