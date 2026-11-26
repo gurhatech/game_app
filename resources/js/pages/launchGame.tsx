@@ -7,7 +7,7 @@ export default function LaunchGame() {
     if (flash?.url) {
         return (
             <div className="w-screen">
-                <Topbar title="Game" redirectUrl="/" />
+                <Topbar title="Game"/>
                 <iframe
                     id="game_frame"
                     src={flash?.url}
@@ -22,7 +22,7 @@ export default function LaunchGame() {
     } else {
         return (
         <>
-        <Topbar title="Game" redirectUrl="/" />
+        <Topbar title="Game" />
         <div className="w-full h-[80vh] flex item-center justify-center">Game Not Found!</div>
         </>
     );

@@ -6,7 +6,7 @@ import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 export default function ChatSupport() {
     return (
         <>
-            <Topbar title="Support" redirectUrl="/" />
+            <Topbar title="Support" />
             <div className="w-screen  px-5 chat chat-start">
                 <div className="chat-image avatar">
                     <div className="w-10 rounded-full">
@@ -20,10 +20,10 @@ export default function ChatSupport() {
                     Chatbot
                     <time className="text-xs opacity-50">12:45</time>
                 </div>
-                <div className="chat-bubble bg-bg-secondary text-[#c8787d]">You were the Chosen One!</div>
+                <div className="chat-bubble bg-bg-secondary text-[#c8787d]">Hi</div>
                 <div className="chat-footer opacity-50">Delivered</div>
             </div>
-            <div className="w-screen  px-5 chat chat-end">
+            {/* <div className="w-screen  px-5 chat chat-end">
                 <div className="chat-image avatar">
                     <div className="w-10 rounded-full">
                         <img
@@ -37,8 +37,8 @@ export default function ChatSupport() {
                     <time className="text-xs opacity-50">12:46</time>
                 </div>
                 <div className="chat-bubble bg-bg-secondary text-[#c8787d]">I hate you!</div>
-                {/* <div className="chat-footer opacity-50">Seen at 12:46</div> */}
-            </div>
+                <div className="chat-footer opacity-50">Seen at 12:46</div> 
+            </div> */}
             <div className="w-screen absolute bottom-0 left-0 right-0 z-10">
                 <div className="flex items-center justify-between px-8 mb-3">
                     <span

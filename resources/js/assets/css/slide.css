@@ -8,7 +8,7 @@
 .carousel_track-container {
   overflow: hidden;
   width: 100%;
-  height:150px;
+  height:160px;
 }
 
 .carousel_track {
@@ -52,6 +52,7 @@
 .carousel_image > img {
   display: block;
   width: 100%;
+  height: 100%;
   object-position: center;
   border: none;
 }

@@ -1,9 +1,10 @@
 import Topbar from "@/components/Topbar";
 import "../assets/css/diposit.css";
-import { Link } from "@inertiajs/react";
+import { Link, useForm, usePage } from "@inertiajs/react";
 import { useState } from "react";
 import Button from "@/components/Button";
 import AddBankAccount from "@/components/AddBankAccount";
+import { BankAccountType } from "@/types";
 
 const withdrawAmountsData = [110, 200, 300, 500, 1000, 2000, 3000, 5000];
 
@@ -41,12 +42,12 @@ function LeftComponent() {
                     <g
                         fill="none"
                         stroke="currentColor"
-                        stroke-linejoin="round"
-                        stroke-width="4"
+                        strokeLinejoin="round"
+                        strokeWidth="4"
                     >
                         <rect width="30" height="36" x="9" y="8" rx="2" />
                         <path
-                            stroke-linecap="round"
+                            strokeLinecap="round"
                             d="M18 4v6m12-6v6m-14 9h16m-16 8h12m-12 8h8"
                         />
                     </g>
@@ -56,25 +57,39 @@ function LeftComponent() {
     );
 }
 
-export default function Withdraw() {
-    const [showBankAccount,setShowBankAccount] = useState<boolean>(true);
+export default function Withdraw({
+    bank_account,wager
+}: {
+    bank_account: BankAccountType | null,
+    wager : any
+}) {
+    const {user} = usePage().props.auth
+    const [showBankAccount, setShowBankAccount] = useState<boolean>(false);
     const [index, setIndex] = useState<number>(0);
     const addAmountHandler = (i: number) => {
         setIndex(i);
     };
+    const {data,setData,post,processing,errors} = useForm({
+        user_id : bank_account?.user_id || 0,
+        bank_account_id :bank_account?.id || 0,
+        amount : withdrawAmountsData[index]
+    });
+
+    const createWithdraw = ()=>{
+        post('/withdraw');
+    }
+
     return (
         <>
-            {showBankAccount && <AddBankAccount setShowBankAccount={setShowBankAccount}/>}
-            <Topbar
-                title="Withdraw"
-                redirectUrl="/"
-                leftComponent={<LeftComponent/>}
-            />
+            {showBankAccount && (
+                <AddBankAccount setShowBankAccount={setShowBankAccount} />
+            )}
+            <Topbar title="Withdraw" leftComponent={<LeftComponent />} />
             <div className="page">
                 <section className="balances">
                     <Link className="balance-card blue" href="/diposit">
                         <span className="label">Total Balance</span>
-                        <span className="amount">0</span>
+                        <span className="amount">{user.balance}</span>
                         <span className="rupee-watermark">₹</span>
                     </Link>
                     <div className="balance-card green">
@@ -85,9 +100,20 @@ export default function Withdraw() {
                 </section>
 
                 <section>
-                    <div onClick={()=> setShowBankAccount(true)} className="amount-display mt-8 cursor-pointer">
-                        <p>Add Bank Account</p>
-                    </div>
+                    {bank_account?.status ? (
+                        <div style={{border:"2px solid var(--text-muted)"}} className="w-full flex justify-between items-center px-1 py-3 rounded-xl mt-3 bg-bg-accent">
+                            <span className="text-sm text-slate-300"><b className="text-green-600">Bank Acc. :</b> {bank_account.bank_account_no}</span>
+                            <span className="text-sm text-slate-300"><b className="text-green-600">IFSC : </b>{bank_account.ifsc.toUpperCase()}</span>
+                        </div>
+                    ) : (
+                        <div
+                            onClick={() => setShowBankAccount(true)}
+                            className="amount-display mt-8 cursor-pointer"
+                        >
+                            <p>Add Bank Account</p>
+                        </div>
+                    )}
+
                     <div className="amount-heading">
                         <span>Withdrawal Amount</span>
                     </div>
@@ -117,15 +143,15 @@ export default function Withdraw() {
                         <p className="text-[#c8787d]">
                             Remaining Withdrawal Limit:
                         </p>
-                        <span>₹1000</span>
+                        <span>₹1000.00</span>
                     </div>
                     <div className="flex justify-between items-center py-1 px-3 text-[14px] rounded-2xl bg-[#7b292e]">
                         <p className="text-[#c8787d]">VIP Daily Limit:</p>
-                        <span>₹1000</span>
+                        <span>₹1000.00</span>
                     </div>
                     <div className="flex justify-between items-center py-1 px-3 text-[14px] rounded-2xl bg-[#7b292e]">
                         <p className="text-[#c8787d]">Wager Requirement</p>
-                        <span>₹0</span>
+                        <span>₹{wager}</span>
                     </div>
                     <div className="flex justify-between items-center py-1 px-3 text-[14px] rounded-2xl bg-[#7b292e]">
                         <p className="text-[#c8787d]">Free Limit:</p>
@@ -147,7 +173,7 @@ export default function Withdraw() {
                 </section>
             </div>
             <div className="pay-wrap">
-                <Button title="Withdraw" />
+                <Button type="button" disabled={processing} onClick={createWithdraw} title={processing ? "processing..." : "Withdraw"} />
             </div>
         </>
     );

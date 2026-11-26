@@ -14,12 +14,12 @@ const IconData: Record<string, React.ReactNode> = {
             <path
                 d="M18 21 L46 43"
                 stroke="#990000"
-                stroke-width="5"
+                strokeWidth="5"
                 fill="none"
             />
             <circle cx="22" cy="22" r="5" fill="#990000" />
             <circle cx="42" cy="42" r="5" fill="#990000" />
-            <path d="M24 48 L40 16" stroke="#990000" stroke-width="5" />
+            <path d="M24 48 L40 16" stroke="#990000" strokeWidth="5" />
         </>
     ),
     earn: (

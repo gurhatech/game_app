@@ -23,7 +23,7 @@ export default function Tab() {
         },
         {
             name: "Mine",
-            url: "/mine",
+            url: "/profile",
             icon: <IconSvg name="mine" />,
         },
     ];

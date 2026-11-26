@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
+use App\Models\Diposit;
+use App\Models\BankAccount;
+use App\Models\Withdraw;
+use App\Models\Transaction;
 
 /**
  * @property int $id
@@ -22,12 +26,30 @@ use Illuminate\Support\Carbon;
  * @property string $password
  * @property string|null $remember_token
  * @property Carbon|null $created_at
+ * @property Carbon|null $verify_at
  * @property Carbon|null $updated_at
  */
-#[Fillable(['uid','name', 'email','ip','phone_no','balance','password'])]
+#[Fillable(['uid','name','ip','mobile','balance','password','verify_at','is_guest'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
+
+    public function diposit(){
+        return $this->hasMany(Diposit::class,'user_id','id');
+    }
+
+    public function withdraw(){
+        return $this->hasMany(Withdraw::class,'user_id','id');
+    }
+
+    public function bank_account(){
+        return $this->hasMany(BankAccount::class,'user_id','id');
+    }
+
+    public function transaction(){
+        return $this->hasMany(Transaction::class,'user_id','id');
+    }
+
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 

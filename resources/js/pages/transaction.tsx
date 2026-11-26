@@ -13,9 +13,8 @@ export default function Transaction({ transactionType }: props) {
         <>
             <Topbar
                 title={`${transactionType} Transaction`}
-                redirectUrl={`/${transactionType}`}
             />
-            <div className="">
+            <div className="w-full">
                 <div
                     style={{
                         borderBottom: "1px solid #999",
@@ -45,7 +44,7 @@ export default function Transaction({ transactionType }: props) {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="m-auto">
                 {[...new Array(3).keys()].map((_, i) => (
                     <TransactionList />
                 ))}
